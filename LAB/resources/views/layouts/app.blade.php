@@ -18,8 +18,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
-                    <a class="nav-link active" href="{{ route('home.about') }}">About</a>
+                    <a class="nav-link active" href="{{ route('home.index') }}">Trang chủ</a>
+                    <a class="nav-link active" href="{{ route('product.index') }}">Trang sản phẩm</a>
+                    <a class="nav-link active" href="{{ route('home.about') }}">Liên hệ</a>
                 </div>
             </div>
         </div>
