@@ -20,7 +20,7 @@
                     <a href="{{ route('admin.home.index') }}" class="nav-link text-white">Admin - Trang chủ</a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">Admin - Quản lý sản phẩm</a>
+                    <a href="{{ route('admin.product.index') }}" class="nav-link text-white">Admin - Quản lý sản phẩm</a>
                 </li>
                 <li>
                     <a href="{{ route('home.index') }}" class="mt-2 btn bg-primary text-white">Quay lại Trang chủ</a>
