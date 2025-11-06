@@ -21,6 +21,18 @@
                     <a class="nav-link active" href="{{ route('home.index') }}">Trang chủ</a>
                     <a class="nav-link active" href="{{ route('product.index') }}">Trang sản phẩm</a>
                     <a class="nav-link active" href="{{ route('home.about') }}">Liên hệ</a>
+                    <a class="nav-link active" href="{{ route('cart.index') }}">Giỏ hàng</a>
+                    <div class="vr bg-white mx-2 d-none d-lg-block"></div>
+                    @guest
+                        <a class="nav-link active" href="{{ route('login') }}">Đăng nhập</a>
+                        <a class="nav-link active" href="{{ route('register') }}">Đăng ký</a>
+                    @else
+                        <form id="logout" action="{{ route('logout') }}" method="POST">
+                            <a role="button" class="nav-link active" onclick="document.getElementById('logout').submit();">
+                                Đăng xuất </a>
+                                @csrf
+                        </form>
+                    @endguest
                 </div>
             </div>
         </div>

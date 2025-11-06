@@ -55,7 +55,10 @@
     </div>
 </div>
 <div class="card">
-    <div class="card-header">Quản lý sản phẩm</div>
+    <div class="card-header">Danh sách sản phẩm</div>
+    <a href="{{ route('admin.product.trash') }}" class="btn btn-warning btn-sm">
+            Thùng rác
+    </a>
     <div class="card-body">
         <table class="table table-bordered table-striped">
             <thead>

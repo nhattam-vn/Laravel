@@ -17,7 +17,7 @@ class AdminProductController extends Controller{
         $request->validate([
             "name"=>"required|max:255",
             "description"=>"required",
-            "price"=>"reqired|numeric|gt:0",
+            "price"=>"required|numeric|gt:0",
             "image"=>"image",
         ]);
         $newProduct= new Product();
@@ -38,4 +38,29 @@ class AdminProductController extends Controller{
         }
         return back();
     }
-}
+    public function trash(){
+        $viewData = [];
+        $viewData["title"] = "Thùng rác sản phẩm";
+        $viewData["subtitle"] = "Danh sách sản phẩm đã xóa mềm";
+        $viewData["products"] = Product::onlyTrashed()->paginate(10);
+
+        return view("product.trash")->with("viewData", $viewData);
+    }
+    public function restore($id){
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->restore();
+        return redirect()->route('admin.product.trash')->with('success', 'Khôi phục thành công!');
+    }
+    public function forceDelete($id)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        
+        // Nếu có hình ảnh thì xóa luôn file khỏi storage
+        if ($product->image) {
+            Storage::delete('public/'.$product->image);
+        }
+
+        $product->forceDelete();
+        return redirect()->route('admin.product.trash')->with('success', 'Xóa vĩnh viễn thành công!');
+    }
+} 

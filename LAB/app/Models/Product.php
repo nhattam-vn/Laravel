@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     /**
@@ -16,6 +17,8 @@ class Product extends Model
 * $this->attributes['created_at'] - timestamp - contains the productcreation date
 * $this->attributes['updated_at'] - timestamp - contains the productupdate date
 **/
+    use HasFactory, SoftDeletes;
+
     public function getId(){
         return $this->attributes["id"];
     }
@@ -67,5 +70,12 @@ class Product extends Model
     public function setUpdatedAt($updatedAt)
     {
     $this->attributes['updated_at'] = $updatedAt;
+    }
+    public static function sumPriceByQuantities($products,$productsInSession) {
+        $total=0;
+        foreach($products as $product){
+            $total=$total+($product->getPrice()*$productsInSession[$product->getId()]);
+        }
+        return $total;
     }
 }
